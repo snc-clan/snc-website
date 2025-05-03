@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNC Clan Anmeldung</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('../img/test.png') no-repeat center center/cover;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .title {
+            font-size: 36px;
+            color: #00ff00;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+        .button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: #333;
+            color: white;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            border: none;
+        }
+        .button:hover {
+            background: #555;
+        }
+        .message {
+            color: white;
+            font-size: 20px;
+            margin-top: 10px;
+            display: none;
+        }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">SNC Clan Anmeldung</div>
+        <input type="text" id="username" class="input-field" placeholder="Benutzername">
+        <input type="password" id="password" class="input-field" placeholder="Passwort">
+        <button class="button" onclick="login()">Anmelden</button>
+        <div id="error" class="error-message"></div>
+        <div id="message" class="message"></div>
+    </div>
+    
+    <script src="./script.js"></script>
+</body>
+</html>

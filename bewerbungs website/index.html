@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anmeldung</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    background: url('../img/test.png') no-repeat center center fixed;
+    background-size: cover;
+    image-rendering: crisp-edges;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background: rgba(35, 39, 42, 0.9);
+    padding: 50px;
+    border-radius: 100px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    color: white;
+    width: 90%; /* Macht das Formular flexibler */
+    max-width: 400px; /* Begrenzt es auf 400px */
+    box-sizing: border-box;
+    margin: auto; /* Falls irgendwas es verschiebt, wird es hiermit behoben */
+}
+
+        input, select, button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        input, select {
+            background: #99aab5;
+            color: black;
+        }
+        button {
+            background: #7289da;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #677bc4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Anmeldung</h2>
+        <form id="anmeldeForm">
+            <label for="discordName">Discord Name:</label>
+            <input type="text" id="discordName" required><br>
+        
+            <label for="alter">Alter:</label>
+            <input type="number" id="alter" required><br>
+        
+            <label for="staerken">Stärken:</label>
+            <input type="text" id="staerken" required><br>
+        
+            <label for="schwaechen">Schwächen:</label>
+            <input type="text" id="schwaechen" required><br>
+        
+            <label for="cb">Wähle deinen CB:</label>
+            <select id="cb" required>
+                <option value="CB1">CB1</option>
+                <option value="CB2">CB2</option>
+                <option value="CB3">CB3</option>
+                <option value="CB4">CB4</option>
+                <option value="CB5">CB5</option>
+            </select><br>
+        
+            <button type="submit">Senden</button>
+        </form>
+    </div>
+    <script>
+document.getElementById("anmeldeForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Verhindert das Neuladen der Seite
+    
+    let discordName = document.getElementById("discordName").value;
+    let alter = document.getElementById("alter").value;
+    let staerken = document.getElementById("staerken").value;
+    let schwaechen = document.getElementById("schwaechen").value;
+    let cb = document.getElementById("cb").value;
+
+    let webhookURL = "https://discord.com/api/webhooks/1360930432627245076/HX-qXITzmEA6W-3KCJZ4CK9VKxHW7FpFtdreQmPWNM1AuaKCh64WYrmoqVys3fMh8iH5";
+
+    let payload = {
+        content: `**Neue Anmeldung!** 🚀\n**Discord Name:** ${discordName}\n**Alter:** ${alter}\n**Stärken:** ${staerken}\n**Schwächen:** ${schwaechen}\n**CB:** ${cb}`
+    };
+
+    console.log("Sende Daten an Webhook:", payload); // Debugging
+
+    fetch(webhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    })
+    .then(response => {
+        console.log("Antwortstatus:", response.status);
+        return response.text();
+    })
+    .then(text => {
+        console.log("Antworttext:", text);
+        if (text.includes("Missing")) {
+            alert("Fehler: Der Webhook scheint falsch zu sein!");
+        } else {
+            alert("Anmeldung erfolgreich gesendet!");
+            document.getElementById("anmeldeForm").reset();
+        }
+    })
+    .catch(error => {
+        console.error("Fetch-Fehler:", error);
+        alert("Fehler beim Senden der Anmeldung. Siehe Konsole für Details.");
+    });
+});
+
+    </script>
+</body>
+</html>
