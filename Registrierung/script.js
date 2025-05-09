@@ -1,13 +1,6 @@
 let currentGeneratedPassword = null;
 const webhookURL = "https://discord.com/api/webhooks/1370532858883604480/iEAxbu6qNHQwZxB0SkO1zsnICWU-BSpxxkjv4CQr4XHRr8zuRkY7OwPhWiFyATiY-LQK";
 
-document.addEventListener("contextmenu", (event) => event.preventDefault());
-document.addEventListener("keydown", (event) => {
-    if (event.key === "F12" || (event.ctrlKey && event.shiftKey && event.key === "I")) {
-        event.preventDefault();
-    }
-});
-
 function login() {
     const allowedUsernames = ["CoOwner", "Supporter", "Moderator", "Anführer", "Admin", "Owner"];
     const username = document.getElementById('username').value;
